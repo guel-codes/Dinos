@@ -8,14 +8,6 @@ function Dino(species,dino_weight,dino_height,dino_diet,where,when,fact){
     this.when = when
     this.fact = fact
 }
-//Adding Human Constructor
-function Human(name, human_height_feet, human_height_inches,human_weight,human_diet){
-    this.name = name
-    this.human_height_feet = human_height_feet 
-    this.human_height_inches = human_height_inches
-    this.human_weight = human_weight
-    this.human_diet = human_diet
-}
 
 // Create Dino Objects
 // fetch("dino.json")
@@ -25,16 +17,37 @@ function Human(name, human_height_feet, human_height_inches,human_weight,human_d
 
 const Triceratops = new Dino('Triceratops',13000,114,'herbavor','North America','Late Cretaceous','First discovered in 1889 by Othniel Charles Marsh')
 const TRex = new Dino('Tyrannosaurus Rex',11905,144,'carnivor','North America','Late Cretaceous','The largest known skull measures in at 5 feet long.')
-const Anklyo = new Dino('Triceratops',10500,55,'herbavor','North America','Late Cretaceous','Anklyosaurus survived for approximately 135 million years.')
-const pigeon = new Dino('Pigeon',0.5,9,'herbavor','World Wide','Holocene','All birds are living dinosaurs.')
-
+const Anklyo = new Dino('Anklyosaurus',10500,55,'herbavor','North America','Late Cretaceous','Anklyosaurus survived for approximately 135 million years.')
+const Brachio = new Dino('Brachiosaurus',70000,372,'herbavor','North America','Late Jurassic','An asteroid was named 9954 Brachiosaurus in 1991.')
+const Stego = new Dino('Stegosaurus',11600,79,'herbavor','North America, Europe, Asia','Late Jurassic to Early Cretaceous','The Stegosaurus had between 17 and 22 seperate places and flat spines.')
+const Elasmo = new Dino('Elasmosaurus',16000,59,'carnivor','North America','Late Cretaceous','Elasmosaurus was a marine reptile first discovered in Kansas.')
+const Pteranodon = new Dino('Pteranodon',44,20,'carnivor','North America','Late Cretaceous','Actually a flying reptile, the Pteranodon is not a dinosaur.')
+const Pigeon = new Dino('Pigeon',0.5,9,'herbavor','World Wide','Holocene','All birds are living dinosaurs.')
 
     // Create Human Object
-const human = new Human('Miguel',5,8,190,'omnivor')
+//Adding Human Constructor
+function Human(name, human_height_feet, human_height_inches,human_weight,human_diet){
+    this.name = name
+    this.human_height_feet = human_height_feet 
+    this.human_height_inches = human_height_inches
+    this.human_weight = human_weight
+    this.human_diet = human_diet
+}
 
     // Use IIFE to get human data from form
+function compareClick(){
+    (function getUserResults() {
+        human_name = document.getElementById('name').value;
+        human_height_feet = document.getElementById('feet').value;
+        human_height_inches = document.getElementById('inches').value;
+        human_weight = document.getElementById('weight').value;
+        human_diet = document.getElementById('diet').value;
+        
+        const human = new Human(human_name,human_height_feet,human_height_inches,human_weight,human_diet)
 
-
+        console.log(human.name)
+    })();
+}
     // Create Dino Compare Method 1 HEIGHT ?
     // NOTE: Weight in JSON file is in lbs, height in inches. 
 function compare_height(human_height, dino_height){
