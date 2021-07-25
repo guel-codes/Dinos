@@ -35,6 +35,9 @@ function Human(name, human_height_feet, human_height_inches,human_weight,human_d
 }
 
     // Use IIFE to get human data from form
+    // Need to add an eventListener for the click, out this compareClick() function 
+    //in the infographic display below and take the 'onClick' out of the HTML code
+    
 function compareClick(){
     (function getUserResults() {
         human_name = document.getElementById('name').value;
@@ -45,7 +48,7 @@ function compareClick(){
         
         const human = new Human(human_name,human_height_feet,human_height_inches,human_weight,human_diet)
 
-        console.log(human.name)
+        console.log(human)
     })();
 }
     // Create Dino Compare Method 1 HEIGHT ?
@@ -55,7 +58,7 @@ function compare_height(human_height, dino_height){
 }
     
     // Create Dino Compare Method 2 WEIGHT ?
-    // NOTE: Weight in JSON file is in lbs, height in inches.
+    // NOTE: Weight in JSON file is in lbs, height in inches.[]
 function compare_weight(human_weight, dino_weight){
     return
 }
