@@ -10,10 +10,6 @@ function Dino(species,dino_weight,dino_height,dino_diet,where,when,fact){
 }
 
 // Create Dino Objects
-// fetch("dino.json")
-//     .then(response => response.json())
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
 
 const Triceratops = new Dino('Triceratops',13000,114,'herbavor','North America','Late Cretaceous','First discovered in 1889 by Othniel Charles Marsh')
 const TRex = new Dino('Tyrannosaurus Rex',11905,144,'carnivor','North America','Late Cretaceous','The largest known skull measures in at 5 feet long.')
@@ -25,49 +21,54 @@ const Pteranodon = new Dino('Pteranodon',44,20,'carnivor','North America','Late 
 const Pigeon = new Dino('Pigeon',0.5,9,'herbavor','World Wide','Holocene','All birds are living dinosaurs.')
 
     // Create Human Object
-//Adding Human Constructor
-function Human(name, human_height_feet, human_height_inches,human_weight,human_diet){
-    this.name = name
-    this.human_height_feet = human_height_feet 
-    this.human_height_inches = human_height_inches
-    this.human_weight = human_weight
-    this.human_diet = human_diet
-}
+    function Human(name, human_height_feet, human_height_inches,human_weight,human_diet){
+        this.name = name
+        this.human_height_feet = human_height_feet 
+        this.human_height_inches = human_height_inches
+        this.human_weight = human_weight
+        this.human_diet = human_diet
+    }
 
     // Use IIFE to get human data from form
-    // Need to add an eventListener for the click, out this compareClick() function 
-    //in the infographic display below and take the 'onClick' out of the HTML code
-    
-function compareClick(){
-    (function getUserResults() {
-        human_name = document.getElementById('name').value;
-        human_height_feet = document.getElementById('feet').value;
-        human_height_inches = document.getElementById('inches').value;
-        human_weight = document.getElementById('weight').value;
-        human_diet = document.getElementById('diet').value;
-        
-        const human = new Human(human_name,human_height_feet,human_height_inches,human_weight,human_diet)
+    function compareClick(){
+        (function getUserResults() {
+            human_name = document.getElementById('name').value;
+            human_height_feet = document.getElementById('feet').value;
+            human_height_inches = document.getElementById('inches').value;
+            human_weight = document.getElementById('weight').value;
+            human_diet = document.getElementById('diet').value;
+            
+            var human = new Human(human_name,human_height_feet,human_height_inches,human_weight,human_diet)
+            console.log(human)
 
-        console.log(human)
-    })();
-}
+        })();
+    }
+    
     // Create Dino Compare Method 1 HEIGHT ?
     // NOTE: Weight in JSON file is in lbs, height in inches. 
-function compare_height(human_height, dino_height){
-    return
-}
-    
+    function compare_height(human_height_feet, human_height_inches, dino_height){
+        total_human_height = (human_height_feet * 12) + human_height_inches
+        total_dino_height = dino_height
+        height_difference = total_dino_height - total_human_height
+        console.log('compared height')
+        console.log(`dino height ${Triceratops.dino_height}`)
+    }
+
     // Create Dino Compare Method 2 WEIGHT ?
     // NOTE: Weight in JSON file is in lbs, height in inches.[]
-function compare_weight(human_weight, dino_weight){
-    return
-}
+    function compare_weight(human_weight, dino_weight){
+        return
+    }
     
     // Create Dino Compare Method 3 DIET?
     // NOTE: Weight in JSON file is in lbs, height in inches.
-function compare_diet(human_diet, dino_diet){
-    return
-}
+    function compare_diet(human_diet, dino_diet){
+        return
+    }
+
+//compare_height(human.human_height_feet,human.human_height_inches,Triceratops);
+
+
 
     // Generate Tiles for each Dino in Array
   
