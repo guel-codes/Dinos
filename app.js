@@ -1,90 +1,90 @@
 // Create Dino Constructor
-function Dino(species,dino_weight,dino_height,dino_diet,where,when,fact){
+function Dino(species,dinoWeight,dinoHeight,dinoDiet,where,when,fact,imagePath){
     this.species = species
-    this.dino_weight = dino_weight
-    this.dino_height = dino_height
-    this.dino_diet = dino_diet
+    this.dinoWeight = dinoWeight
+    this.dinoHeight = dinoHeight
+    this.dinoDiet = dinoDiet
     this.where = where
     this.when = when
     this.fact = fact
+    this.imagePath = imagePath
 }
 
 // Create Dino Objects
-// let dino_json = dino.json;
+const Triceratops = new Dino('Triceratops',13000,114,'herbavor','North America','Late Cretaceous','First discovered in 1889 by Othniel Charles Marsh','images/triceratops.png')
+const TRex = new Dino('Tyrannosaurus Rex',11905,144,'carnivor','North America','Late Cretaceous','The largest known skull measures in at 5 feet long.','images/tyrannosaurus rex.png')
+const Anklyo = new Dino('Anklyosaurus',10500,55,'herbavor','North America','Late Cretaceous','Anklyosaurus survived for approximately 135 million years.','images/anklyosaurus.png')
+const Brachio = new Dino('Brachiosaurus',70000,372,'herbavor','North America','Late Jurassic','An asteroid was named 9954 Brachiosaurus in 1991.','images/brachiosaurus.png')
+const Stego = new Dino('Stegosaurus',11600,79,'herbavor','North America, Europe, Asia','Late Jurassic to Early Cretaceous','The Stegosaurus had between 17 and 22 seperate places and flat spines.','images/stegosaurus.png')
+const Elasmo = new Dino('Elasmosaurus',16000,59,'carnivor','North America','Late Cretaceous','Elasmosaurus was a marine reptile first discovered in Kansas.','images/elasmosaurus.png')
+const Pteranodon = new Dino('Pteranodon',44,20,'carnivor','North America','Late Cretaceous','Actually a flying reptile, the Pteranodon is not a dinosaur.','images/pteranodon.png')
+const Pigeon = new Dino('Pigeon',0.5,9,'herbavor','World Wide','Holocene','All birds are living dinosaurs.','images/pigeon.png')
 
-// for(let key, value in dino_json){
-    
-// }
-
-const Triceratops = new Dino('Triceratops',13000,114,'herbavor','North America','Late Cretaceous','First discovered in 1889 by Othniel Charles Marsh')
-const TRex = new Dino('Tyrannosaurus Rex',11905,144,'carnivor','North America','Late Cretaceous','The largest known skull measures in at 5 feet long.')
-const Anklyo = new Dino('Anklyosaurus',10500,55,'herbavor','North America','Late Cretaceous','Anklyosaurus survived for approximately 135 million years.')
-const Brachio = new Dino('Brachiosaurus',70000,372,'herbavor','North America','Late Jurassic','An asteroid was named 9954 Brachiosaurus in 1991.')
-const Stego = new Dino('Stegosaurus',11600,79,'herbavor','North America, Europe, Asia','Late Jurassic to Early Cretaceous','The Stegosaurus had between 17 and 22 seperate places and flat spines.')
-const Elasmo = new Dino('Elasmosaurus',16000,59,'carnivor','North America','Late Cretaceous','Elasmosaurus was a marine reptile first discovered in Kansas.')
-const Pteranodon = new Dino('Pteranodon',44,20,'carnivor','North America','Late Cretaceous','Actually a flying reptile, the Pteranodon is not a dinosaur.')
-const Pigeon = new Dino('Pigeon',0.5,9,'herbavor','World Wide','Holocene','All birds are living dinosaurs.')
-
-// Create Human Object
-function Human(name, human_height_feet, human_height_inches,human_weight,human_diet){
+    // Create Human Object
+function Human(name, humanHeightFeet, humanHeightInches,humanWeight,humanDiet){
     this.name = name
-    this.human_height_feet = human_height_feet 
-    this.human_height_inches = human_height_inches
-    this.human_weight = human_weight
-    this.human_diet = human_diet
+    this.humanHeightFeet = humanHeightFeet 
+    this.humanHeightInches = humanHeightInches
+    this.humanWeight = humanWeight
+    this.humanDiet = humanDiet
 }
 
-// Use IIFE to get human data from form
-function get_human_data(){
+    // Use IIFE to get human data from form
+function getHumanData(){
     (function getUserResults() {
-        human_name = document.getElementById('name').value;
-        human_height_feet = document.getElementById('feet').value;
-        human_height_inches = document.getElementById('inches').value;
-        human_weight = document.getElementById('weight').value;
-        human_diet = document.getElementById('diet').value;
+        humanName = document.querySelector('#name').value;
+        humanHeightFeet = document.querySelector('#feet').value;
+        humanHeightInches = document.querySelector('#inches').value;
+        humanWeight = document.querySelector('#weight').value;
+        humanDiet = document.querySelector('#diet').value;
         
-        var human = new Human(human_name,human_height_feet,human_height_inches,human_weight,human_diet)
+        //create a human object from the data
+        const human = new Human(humanName,humanHeightFeet,humanHeightInches,humanWeight,humanDiet)
         console.log(human)
 
     })();
 }
 
-// Create Dino Compare Method 1 HEIGHT ?
-// NOTE: Weight in JSON file is in lbs, height in inches. 
-function compare_height(human_height_feet, human_height_inches, dino_height){
-    total_human_height = (human_height_feet * 12) + human_height_inches
-    total_dino_height = dino_height
-    height_difference = total_dino_height - total_human_height
+    // Create Dino Compare Method 1 HEIGHT ?
+    // NOTE: Weight in JSON file is in lbs, height in inches. 
+function compareHeight(humanHeightFeet, humanHeightInches, dinoHeight){
+    totalHumanHeight = Number((humanHeightFeet * 12)) + Number(humanHeightInches)
+    totalDinoHeight = dinoHeight
+    heightDifference = totalDinoHeight - totalHumanHeight
     console.log('compared height')
-    console.log(`dino height ${Triceratops.dino_height}`)
+
 }
 
-// Create Dino Compare Method 2 WEIGHT ?
-// NOTE: Weight in JSON file is in lbs, height in inches.[]
-function compare_weight(human_weight, dino_weight){
+    // Create Dino Compare Method 2 WEIGHT ?
+    // NOTE: Weight in JSON file is in lbs, height in inches.[]
+function compareWeight(humanWeight, dinoWeight){
+    weightDifference = dinoWeight - humanWeight
+    console.log(`You are ${weightDifference} pounds less than this dino`)
+}
+
+    // Create Dino Compare Method 3 DIET?
+    // NOTE: Weight in JSON file is in lbs, height in inches.
+function compareDiet(humanDiet, dinoDiet){
     return
 }
 
-// Create Dino Compare Method 3 DIET?
-// NOTE: Weight in JSON file is in lbs, height in inches.
-function compare_diet(human_diet, dino_diet){
-    return
+function removeForm(){
+    document.querySelector("#dino-compare").style.display = 'none'
 }
-
-//compare_height(human.human_height_feet,human.human_height_inches,Triceratops);
-
-
 
     // Generate Tiles for each Dino in Array
-  
-        // Add tiles to DOM
+function generateTiles(dinoInfo, humanInfo){
+    return
+}
 
-    // Remove form from screen
+        // Add tiles to DOM
 
 
 // On button click, prepare and display infographic
-let button = document.getElementById("btn")
+let button = document.querySelector("#btn")
+
 button.addEventListener("click", function(){
-    document.getElementById("dino-compare").style.display = "none";
-    get_human_data()
+    getHumanData()
+    removeForm()
+    generateTiles()
 })
