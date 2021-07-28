@@ -99,5 +99,4 @@ button.addEventListener("click", function() {
     getHumanData()
     removeForm()
     generateTiles()
-
 })
