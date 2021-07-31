@@ -21,8 +21,6 @@ function Human(name, humanHeightFeet, humanHeightInches, humanWeight, humanDiet)
 }
 
 // Create Dino Objects
-
-
 let url = 'dino.json'
 fetch(url)
     .then(response => response.json()) //get response from url
@@ -40,17 +38,8 @@ function getDinoArray(dinos) {
         
     });
     console.log(dinoArray)
+    return dinoArray
 }
-
-
-
-// function showDinoResults(dinoArray){
-//     for(index =0; index<dinoArray.length; index ++){
-//         const dino = resultsArray[index]
-//         console.log(dino)
-//     }
-
-// }
 
 
 // Use IIFE to get human data from form
@@ -61,24 +50,28 @@ function getHumanData() {
         humanHeightInches = document.querySelector('#inches').value;
         humanWeight = document.querySelector('#weight').value;
         humanDiet = document.querySelector('#diet').value;
+        humanFact = " " // human object does not take in a fact
         imagePath = 'images/human.png'
-        //create a human object from the data
+        
+        //create a new human object from the data
         const human = new Human(humanName, humanHeightFeet, humanHeightInches, humanWeight, humanDiet, imagePath)
         return human
     })();
 }
 
+function removeForm() {
+    document.querySelector("#dino-compare").style.display = 'none'
+
+}
 
 // Create Dino Compare Method 1 HEIGHT ?
 // NOTE: Weight in JSON file is in lbs, height in inches. 
-function compareHeight(humanHeightFeet, humanHeightInches) {
+function compareHeight() {
     let Feet = getHumanData().humanHeightFeet
     let Inches = getHumanData().humanHeightInches
     totalHumanHeight = Number((Feet * 12)) + Number(Inches)
     console.log(totalHumanHeight)
 }
-
-
 
 // Create Dino Compare Method 2 WEIGHT ?
 // NOTE: Weight in JSON file is in lbs, height in inches.[]
@@ -93,31 +86,47 @@ function compareDiet(humanDiet, dinoDiet) {
     return
 }
 
-function removeForm() {
-    document.querySelector("#dino-compare").style.display = 'none'
-
-}
-
-
-
 
 // Generate Tiles for each Dino in Array
-function generateTiles() {
-    // creating a div 1
-    let applesDiv = document.createElement("div")
-    applesDiv.className = "grid-item"
+// function generateTiles() {
+//     // creating a div 1
+//     let applesDiv = document.createElement("div")
+//     applesDiv.className = "grid-item"
 
-    // creating a h2 tag with the word "apples" as text
-    let apples = document.createElement("h2")
-    apples.innerText = "Apples"
+//     // creating a h2 tag with the word "apples" as text
+//     let apples = document.createElement("h2")
+//     apples.innerText = "Apples"
 
-    applesDiv.appendChild(apples)
+//     applesDiv.appendChild(apples)
 
-    // creates the element on the page
-    document.getElementById("grid").appendChild(applesDiv)
+//     // creates the element on the page
+//     document.getElementById("grid").appendChild(applesDiv)
+// }
+
+function generateTiles(animalObj) {
+    animalObj.forEach(function(dino){
+        let tileDiv = document.createElement('div')
+        tileDiv.className = 'grid-item'
+
+        // creating a h2 tag with the word "apples" as text
+        dino.imagePath
+        let tile = document.createElement("h2")
+        tile.innerHTML = `<h2>${dino.species}</h2>
+        <img src="images/${dino.imagePath}">
+        <h4>${dino.fact}</h4>`
+        tileDiv.appendChild(tile)
+
+        //create the human element and place in center
+
+        // creates the element on the page
+        document.getElementById("grid").appendChild(tileDiv)
+        
+        const dinoGrid = document.getElementById('grid');
+        dinoGrid.style.display = 'flex'
+    })
 }
 
-// Add tiles to DOM
+
 
 
 // On button click, prepare and display infographic
@@ -126,7 +135,6 @@ let button = document.querySelector("#btn")
 button.addEventListener("click", function() {
     getHumanData()
     removeForm()
-    generateTiles()
-    // showDinoResults()
+    generateTiles(dinoArray)
     compareHeight()
 })
