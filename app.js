@@ -1,5 +1,5 @@
 // Create Dino Constructor
-function Dino(species, dinoWeight, dinoHeight, dinoDiet, where, when, fact, imagePath) {
+function Dino(species, dinoWeight, dinoHeight, dinoDiet, where, when, fact) {
     this.species = species
     this.dinoWeight = dinoWeight
     this.dinoHeight = dinoHeight
@@ -7,16 +7,17 @@ function Dino(species, dinoWeight, dinoHeight, dinoDiet, where, when, fact, imag
     this.where = where
     this.when = when
     this.fact = fact
-    this.imagePath = imagePath
+    
 }
 
 // Create Human Object
-function Human(name, humanHeightFeet, humanHeightInches, humanWeight, humanDiet) {
-    this.name = name
+function Human(species, humanHeightFeet, humanHeightInches, humanWeight, humanDiet, fact) {
+    this.species = species
     this.humanHeightFeet = humanHeightFeet
     this.humanHeightInches = humanHeightInches
     this.humanWeight = humanWeight
     this.humanDiet = humanDiet
+    this.fact = fact
 }
 
 //Fetch  JSON
@@ -29,10 +30,10 @@ fetch(url)
     .catch(error => console.log(`There was a data fetch error: ${error}`));
 
 // Creating Dino Array from fetched data
-function getDinoArray(dinos) {
+function getDinoArray(dinos,human) {
     dinoArray = []
     dinos.forEach((dino) => {
-        newDinoObj = new Dino(dino.species,dino.weight, dino.height, dino.diet, dino.where,dino.when,dino.fact,dino.image)
+        newDinoObj = new Dino(dino.species,dino.weight, dino.height, dino.diet, dino.where,dino.when,dino.fact)
         dinoArray.push(newDinoObj)
         
     });
@@ -47,13 +48,14 @@ function getDinoArray(dinos) {
 function getHumanData() {
     return(function() {
         humanName = document.querySelector('#name').value;
+        species = "Human"
         humanHeightFeet = document.querySelector('#feet').value;
         humanHeightInches = document.querySelector('#inches').value;
         humanWeight = document.querySelector('#weight').value;
         humanDiet = document.querySelector('#diet').value;
-        
+        fact = ""
         //create a new human object from the data
-        const human = new Human(humanName, humanHeightFeet, humanHeightInches, humanWeight, humanDiet)
+        const human = new Human(species, humanHeightFeet, humanHeightInches, humanWeight, humanDiet,fact)
         return human
     })();
 }
@@ -91,7 +93,8 @@ function compareDiet(humanDiet, dinoDiet) {
 
 
 // animal obj because this is taking in a new array with the human object and dino objects
-function generateTiles(animalObj) {
+function generateTiles(animalObj,human) {
+    animalObj.splice(4,0,human)
     animalObj.forEach(function(dino){
         let tileDiv = document.createElement('div')
         tileDiv.className = 'grid-item'
@@ -114,7 +117,7 @@ let button = document.querySelector("#btn")
 button.addEventListener("click", function() {
     getHumanData()
     removeForm()
-    generateTiles(dinoArray)
+    generateTiles(dinoArray,getHumanData())
     compareHeight()
 
 })
