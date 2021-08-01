@@ -39,6 +39,7 @@ function getDinoArray(dinos) {
     });
     console.log(dinoArray)
     return dinoArray
+    sliceArray()
 }
 
 
@@ -59,10 +60,16 @@ function getHumanData() {
     })();
 }
 
+// Clear form from screen
 function removeForm() {
     document.querySelector("#dino-compare").style.display = 'none'
 
 }
+
+//This this split the dino array into 2 halves and concatenate the human object in the middle
+// function sliceArray(arrToSlice){
+//     return arrToSlice.slice(0, 4).concat(getHumanData()).concat(arrToSlice.slice(4, 8))   
+// }
 
 // Create Dino Compare Method 1 HEIGHT ?
 // NOTE: Weight in JSON file is in lbs, height in inches. 
@@ -87,7 +94,7 @@ function compareDiet(humanDiet, dinoDiet) {
 }
 
 
-
+// animal obj because this is taking in a new array with the human object and dino objects
 function generateTiles(animalObj) {
     animalObj.forEach(function(dino){
         let tileDiv = document.createElement('div')
@@ -103,6 +110,7 @@ function generateTiles(animalObj) {
         document.getElementById("grid").appendChild(tileDiv)
     })
 }
+
 
 // function generateDinoTiles(DinoObj) {
 //     DinoObj.forEach(function(dino){
