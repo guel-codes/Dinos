@@ -39,8 +39,9 @@ function getDinoArray(dinos) {
     });
     console.log(dinoArray)
     return dinoArray
-    sliceArray()
 }
+
+
 
 
 // Use IIFE to get human data from form
@@ -60,6 +61,7 @@ function getHumanData() {
     })();
 }
 
+
 // Clear form from screen
 function removeForm() {
     document.querySelector("#dino-compare").style.display = 'none'
@@ -67,9 +69,11 @@ function removeForm() {
 }
 
 //This this split the dino array into 2 halves and concatenate the human object in the middle
+
 // function sliceArray(arrToSlice){
 //     return arrToSlice.slice(0, 4).concat(getHumanData()).concat(arrToSlice.slice(4, 8))   
 // }
+
 
 // Create Dino Compare Method 1 HEIGHT ?
 // NOTE: Weight in JSON file is in lbs, height in inches. 
@@ -102,7 +106,7 @@ function generateTiles(animalObj) {
         // creating a h2 tag for the tile
         let tile = document.createElement("h2")
         tile.innerHTML = `<h2>${dino.species}</h2>
-        <img src="images/${dino.imagePath} alt = "picture of ${dino.species}">
+        <img src="images/${dino.species.toLowerCase()}.png" alt = "picture of ${dino.species}"/>
         <h4>${dino.fact}</h4>`
         tileDiv.appendChild(tile)
         
@@ -111,52 +115,6 @@ function generateTiles(animalObj) {
     })
 }
 
-
-// function generateDinoTiles(DinoObj) {
-//     DinoObj.forEach(function(dino){
-//         let tileDiv = document.createElement('div')
-//         tileDiv.className = 'grid-item'
-//         // creating a h2 tag for the tile
-//         let tile = document.createElement("h2")
-//         tile.innerHTML = `<h2>${dino.species}</h2>
-//         <img src="images/${dino.imagePath} alt = "picture of ${dino.species}">
-//         <h4>${dino.fact}</h4>`
-//         tileDiv.appendChild(tile)
-        
-//         // creates the element on the page
-//         document.getElementById("grid").appendChild(tileDiv)
-//         return tileDiv
-//     })
-    
-// }
-
-// function generateHumanTile(getHumanData) {
-//     let tileDiv = document.createElement('div')
-//     tileDiv.className = 'grid-item'
-//     // creating a h2 tag for the tile
-//     let tile = document.createElement("h2")
-//     tile.innerHTML = `<h2>${getHumanData().humanName}</h2>
-//     <img src="images/${getHumanData().imagePath} alt = "picture of ${getHumanData().humanName}">`
-//     tileDiv.appendChild(tile)
-    
-//     // creates the element on the page
-//     document.getElementById("grid").appendChild(tileDiv)
-//     return tileDiv
-// }
-
-// // loop through all 
-// function fragDocAndAppend(dinoArray, getHumanData){
-//     const fragment = document.createDocumentFragment()
-
-//     for (let gridTile = 0 ; gridTile < 9; gridTile++){
-//         if(gridTile === 5){
-//             generateHumanTile(getHumanData())
-//         }else
-//             generateDinoTiles(dinoArray)
-//     }
-//     document.getElementById('grid').appendChild(fragment)
-// }
-
 // On button click, prepare and display infographic
 let button = document.querySelector("#btn")
 
@@ -164,8 +122,6 @@ button.addEventListener("click", function() {
     getHumanData()
     removeForm()
     generateTiles(dinoArray)
-    // generateDinoTiles(dinoArray)
-    // fragDocAndAppend(dinoArray, getHumanData())
     compareHeight()
 
 })
