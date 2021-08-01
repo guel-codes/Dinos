@@ -95,20 +95,33 @@ function compareDiet(humanDiet, dinoDiet) {
 // animal obj because this is taking in a new array with the human object and dino objects
 function generateTiles(animalObj,human) {
     animalObj.splice(4,0,human)
-    animalObj.forEach(function(dino){
+
+    for (let index =0; index < 9; index ++){
+        animal = animalObj[index]
         let tileDiv = document.createElement('div')
         tileDiv.className = 'grid-item'
-
         // creating a h2 tag for the tile
-        let tile = document.createElement("h2")
-        tile.innerHTML = `<h2>${dino.species}</h2>
-        <img src="images/${dino.species.toLowerCase()}.png" alt = "picture of ${dino.species}"/>
-        <h4>${dino.fact}</h4>`
-        tileDiv.appendChild(tile)
+        if (index === 4){
+            animal.species = document.querySelector('#name').value
+            let tile = document.createElement("h2")
+            tile.innerHTML = `<h2>${animal.species}</h2>
+            <img src="images/human.png" alt = "picture of ${animal.species}"/>
+            <h4>${animal.fact}</h4>`
         
+            tileDiv.appendChild(tile)
+        }else{
+
+            let tile = document.createElement("h2")
+            tile.innerHTML = `<h2>${animal.species}</h2>
+            <img src="images/${animal.species.toLowerCase()}.png" alt = "picture of ${animal.species}"/>
+            <h4>${animal.fact}</h4>`
+            
+            tileDiv.appendChild(tile)
+        }
         // creates the element on the page
         document.querySelector("#grid").appendChild(tileDiv)
-    })
+        
+    }
 }
 
 // On button click, prepare and display infographic
