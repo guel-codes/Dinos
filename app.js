@@ -17,7 +17,6 @@ function Human(name, humanHeightFeet, humanHeightInches, humanWeight, humanDiet)
     this.humanHeightInches = humanHeightInches
     this.humanWeight = humanWeight
     this.humanDiet = humanDiet
-    this.imagePath = imagePath
 }
 
 //Fetch  JSON
@@ -52,11 +51,9 @@ function getHumanData() {
         humanHeightInches = document.querySelector('#inches').value;
         humanWeight = document.querySelector('#weight').value;
         humanDiet = document.querySelector('#diet').value;
-        humanFact = " " // human object does not take in a fact
-        imagePath = 'images/human.png'
         
         //create a new human object from the data
-        const human = new Human(humanName, humanHeightFeet, humanHeightInches, humanWeight, humanDiet, imagePath)
+        const human = new Human(humanName, humanHeightFeet, humanHeightInches, humanWeight, humanDiet)
         return human
     })();
 }
@@ -68,11 +65,6 @@ function removeForm() {
 
 }
 
-//This this split the dino array into 2 halves and concatenate the human object in the middle
-
-// function sliceArray(arrToSlice){
-//     return arrToSlice.slice(0, 4).concat(getHumanData()).concat(arrToSlice.slice(4, 8))   
-// }
 
 
 // Create Dino Compare Method 1 HEIGHT ?
@@ -103,6 +95,7 @@ function generateTiles(animalObj) {
     animalObj.forEach(function(dino){
         let tileDiv = document.createElement('div')
         tileDiv.className = 'grid-item'
+
         // creating a h2 tag for the tile
         let tile = document.createElement("h2")
         tile.innerHTML = `<h2>${dino.species}</h2>
@@ -111,7 +104,7 @@ function generateTiles(animalObj) {
         tileDiv.appendChild(tile)
         
         // creates the element on the page
-        document.getElementById("grid").appendChild(tileDiv)
+        document.querySelector("#grid").appendChild(tileDiv)
     })
 }
 
