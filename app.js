@@ -7,6 +7,23 @@ function Dino(species, dinoWeight, dinoHeight, dinoDiet, where, when, fact) {
     this.where = where
     this.when = when
     this.fact = fact
+
+    // Create Dino Compare Method 1 HEIGHT ?
+    // NOTE: Weight in JSON file is in lbs, height in inches. 
+    function compareHeight() {
+        return
+    }
+
+    // Create Dino Compare Method 2 WEIGHT ?
+    // NOTE: Weight in JSON file is in lbs, height in inches.[]
+    function compareWeight() {
+        return
+    }
+    // Create Dino Compare Method 3 DIET?
+    // NOTE: Weight in JSON file is in lbs, height in inches.
+    function compareDiet() {
+        return
+}
     
 }
 
@@ -64,30 +81,6 @@ function removeForm() {
 }
 
 
-
-// Create Dino Compare Method 1 HEIGHT ?
-// NOTE: Weight in JSON file is in lbs, height in inches. 
-function compareHeight() {
-    let humanHeightFeet = getHumanData().humanHeightFeet
-    let humanHeightInches = getHumanData().humanHeightInches
-    let totalHumanHeight = Number(humanHeightFeet*12) + Number(humanHeightInches)
-    console.log(totalHumanHeight)
-}
-
-// Create Dino Compare Method 2 WEIGHT ?
-// NOTE: Weight in JSON file is in lbs, height in inches.[]
-function compareWeight() {
-    let weight = getHumanData().humanWeight
-    console.log(`Your weight is ${weight}`)
-}
-// Create Dino Compare Method 3 DIET?
-// NOTE: Weight in JSON file is in lbs, height in inches.
-function compareDiet() {
-    diet = getHumanData().humanDiet
-    console.log(`You have ${diet} diet`)
-}
-
-
 // animal obj because this is taking in a new array with the human object and dino objects
 function generateTiles(animalObj,human) {
     animalObj.splice(4,0,human)
@@ -126,7 +119,4 @@ button.addEventListener("click", function() {
     getHumanData()
     removeForm()
     generateTiles(dinoArray,getHumanData())
-    compareHeight()
-    compareWeight()
-    compareDiet()
 })
