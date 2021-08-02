@@ -21,8 +21,7 @@ function Human(species, humanHeightFeet, humanHeightInches, humanWeight, humanDi
 }
 
 //Fetch  JSON
-let url = 'dino.json'
-fetch(url)
+fetch('dino.json')
     .then(response => response.json()) //get response from url
     .then(data => {  //get data
         getDinoArray(data.Dinos) //pass array of Dino objects into the getDinoArray function (line 34)
@@ -30,7 +29,7 @@ fetch(url)
     .catch(error => console.log(`There was a data fetch error: ${error}`));
 
 // Creating Dino Array from fetched data
-function getDinoArray(dinos,human) {
+function getDinoArray(dinos) {
     dinoArray = []
     dinos.forEach((dino) => {
         newDinoObj = new Dino(dino.species,dino.weight, dino.height, dino.diet, dino.where,dino.when,dino.fact)
@@ -40,9 +39,6 @@ function getDinoArray(dinos,human) {
     console.log(dinoArray)
     return dinoArray
 }
-
-
-
 
 // Use IIFE to get human data from form
 function getHumanData() {
@@ -72,22 +68,18 @@ function removeForm() {
 // Create Dino Compare Method 1 HEIGHT ?
 // NOTE: Weight in JSON file is in lbs, height in inches. 
 function compareHeight() {
-    let Feet = getHumanData().humanHeightFeet
-    let Inches = getHumanData().humanHeightInches
-    totalHumanHeight = Number((Feet * 12)) + Number(Inches)
-    console.log(totalHumanHeight)
+    return
 }
 
 // Create Dino Compare Method 2 WEIGHT ?
 // NOTE: Weight in JSON file is in lbs, height in inches.[]
-function compareWeight(humanWeight, dinoWeight) {
-    weightDifference = dinoWeight - humanWeight
-    console.log(`You are ${weightDifference} pounds less than this dino`)
+function compareWeight() {
+    return
 }
 
 // Create Dino Compare Method 3 DIET?
 // NOTE: Weight in JSON file is in lbs, height in inches.
-function compareDiet(humanDiet, dinoDiet) {
+function compareDiet() {
     return
 }
 
@@ -119,8 +111,7 @@ function generateTiles(animalObj,human) {
             tileDiv.appendChild(tile)
         }
         // creates the element on the page
-        document.querySelector("#grid").appendChild(tileDiv)
-        
+        document.querySelector("#grid").appendChild(tileDiv) 
     }
 }
 
@@ -131,6 +122,7 @@ button.addEventListener("click", function() {
     getHumanData()
     removeForm()
     generateTiles(dinoArray,getHumanData())
-    compareHeight()
+    compareHeight(dinoArray)
+    compareWeight(dinoArray)
 
 })
