@@ -7,23 +7,15 @@ function Dino(species, dinoWeight, dinoHeight, dinoDiet, where, when, fact) {
     this.where = where
     this.when = when
     this.fact = fact
-
-    // Create Dino Compare Method 1 HEIGHT ?
-    // NOTE: Weight in JSON file is in lbs, height in inches. 
-    function compareHeight() {
-        return
+    this.compareWeight = function (){
+        return 'Weight is now compared'
     }
-
-    // Create Dino Compare Method 2 WEIGHT ?
-    // NOTE: Weight in JSON file is in lbs, height in inches.[]
-    function compareWeight() {
-        return
+    this.compareHeight = function (){
+        return 'Height is now compared'
     }
-    // Create Dino Compare Method 3 DIET?
-    // NOTE: Weight in JSON file is in lbs, height in inches.
-    function compareDiet() {
-        return
-}
+    this.compareDiet = function (){
+        return 'Diet is now compared'
+    }
     
 }
 
@@ -94,8 +86,7 @@ function generateTiles(animalObj,human) {
             animal.species = document.querySelector('#name').value
             let tile = document.createElement("h2")
             tile.innerHTML = `<h2>${animal.species}</h2>
-            <img src="images/human.png" alt = "picture of ${animal.species}"/>
-            <h4>${animal.fact}</h4>`
+            <img src="images/human.png" alt = "picture of ${animal.species}"/>`
         
             tileDiv.appendChild(tile)
         }else{
@@ -104,6 +95,7 @@ function generateTiles(animalObj,human) {
             tile.innerHTML = `<h2>${animal.species}</h2>
             <img src="images/${animal.species.toLowerCase()}.png" alt = "picture of ${animal.species}"/>
             <h4>${animal.fact}</h4>`
+            
             
             tileDiv.appendChild(tile)
         }
