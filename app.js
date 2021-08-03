@@ -7,13 +7,15 @@ function Dino(species, dinoWeight, dinoHeight, dinoDiet, where, when, fact) {
     this.where = where
     this.when = when
     this.fact = fact
-    this.compareWeight = function (){
-        return 'Weight is now compared'
+    this.compareWeight = function (humanWeight){
+        weightDifference = dinoWeight - humanWeight
+        return `There is a ${Math.abs(weightDifference)} pound difference between you and this animal`
     }
-    this.compareHeight = function (){
-        return 'Height is now compared'
+    this.compareHeight = function (humanTotalHeight){
+        heightDifference = dinoHeight - humanTotalHeight
+        return `There is a ${heightDifference} inch difference between you and this animal`
     }
-    this.compareDiet = function (){
+    this.compareDiet = function (humanDiet){
         return 'Diet is now compared'
     }
     
@@ -84,6 +86,7 @@ function generateTiles(animalObj,human) {
         // creating a h2 tag for the tile
         if (index === 4){
             animal.species = document.querySelector('#name').value
+            humanWeight = document.querySelector('#weight').value
             let tile = document.createElement("h2")
             tile.innerHTML = `<h2>${animal.species}</h2>
             <img src="images/human.png" alt = "picture of ${animal.species}"/>`
@@ -94,7 +97,8 @@ function generateTiles(animalObj,human) {
             let tile = document.createElement("h2")
             tile.innerHTML = `<h2>${animal.species}</h2>
             <img src="images/${animal.species.toLowerCase()}.png" alt = "picture of ${animal.species}"/>
-            <h4>${animal.fact}</h4>`
+            <h4>${animal.fact}</h4>
+            <h6>${animal.compareWeight(humanWeight)}</h6>`
             
             
             tileDiv.appendChild(tile)
