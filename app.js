@@ -17,7 +17,14 @@ function Dino(species, dinoWeight, dinoHeight, dinoDiet, where, when, fact) {
         return `There is a ${heightDifference} inch difference between you and this animal`
     }
     this.compareDiet = function (humanDiet){
-        return 'Diet is now compared'
+        if (dinoDiet == humanDiet.toLowerCase()){ //The form uses capital diet but the JSOn has it all lower case
+            let result = 'Yay you both eat the same types of food'
+            return result
+        }else{
+            let result = `Unlike you this Dino is a ${dinoDiet}`
+            return result
+        }
+        // return result
     }
     
 }
@@ -84,12 +91,14 @@ function generateTiles(animalObj,human) {
         animal = animalObj[index]
         let tileDiv = document.createElement('div')
         tileDiv.className = 'grid-item'
+
         // creating a h2 tag for the tile
         if (index === 4){
             animal.species = document.querySelector('#name').value
             humanWeight = document.querySelector('#weight').value
             humanHeightFeet = document.querySelector('#feet').value
             humanHeightInches= document.querySelector('#inches').value
+            humanDiet = document.querySelector('#diet').value
             let tile = document.createElement("h2")
             tile.innerHTML = `<h2>${animal.species}</h2>
             <img src="images/human.png" alt = "picture of ${animal.species}"/>`
@@ -97,14 +106,19 @@ function generateTiles(animalObj,human) {
             tileDiv.appendChild(tile)
         }else{
 
+            //set up random facts
+            const factNumber = Math.floor(Math.random() * 4) // This will select a random number between 0 and 3
+            let genericFact = animal.fact
+            let aCW = animal.compareWeight(humanWeight)
+            let aCH = animal.compareHeight(humanHeightFeet, humanHeightInches)
+            let aCD = animal.compareDiet(humanDiet)
+            facts = [genericFact,aCW, aCH, aCD]
+
             let tile = document.createElement("h2")
             tile.innerHTML = `<h2>${animal.species}</h2>
             <img src="images/${animal.species.toLowerCase()}.png" alt = "picture of ${animal.species}"/>
-            <h4>${animal.fact}</h4>
-            <h6>${animal.compareWeight(humanWeight)}</h6>
-            <h6>${animal.compareHeight(humanHeightFeet, humanHeightInches)}</h6>
-            <h6>${animal.compareDiet(humanWeight)}</h6>`
-            
+            <h4>${facts[factNumber]}</h4>`
+             
             
             tileDiv.appendChild(tile)
         }
