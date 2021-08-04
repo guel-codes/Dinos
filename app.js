@@ -13,7 +13,7 @@ function Dino(species, dinoWeight, dinoHeight, dinoDiet, where, when, fact) {
     }
     this.compareHeight = function (humanHeightFeet, humanHeightInches){
         totalHeight  = Number(humanHeightFeet * 12) + Number(humanHeightInches)
-        heightDifference = dinoHeight - totalHeight
+        heightDifference = Math.abs(dinoHeight - totalHeight)
         return `There is a ${heightDifference} inch difference between you and this animal`
     }
     this.compareDiet = function (humanDiet){
@@ -55,7 +55,6 @@ function getDinoArray(dinos) {
         dinoArray.push(newDinoObj)
         
     });
-    console.log(dinoArray)
     return dinoArray
 }
 
@@ -104,6 +103,14 @@ function generateTiles(animalObj,human) {
             <img src="images/human.png" alt = "picture of ${animal.species}"/>`
         
             tileDiv.appendChild(tile)
+        }else if (index === 8){ // for the pigeon
+
+            let tile = document.createElement("h2")
+            tile.innerHTML = `<h2>${animal.species}</h2>
+            <img src="images/${animal.species.toLowerCase()}.png" alt = "picture of ${animal.species}"/>
+            <h4>${animal.fact}</h4>`
+            tileDiv.appendChild(tile)
+
         }else{
 
             //set up random facts
