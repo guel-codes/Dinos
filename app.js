@@ -45,7 +45,6 @@ fetch('dino.json')
     .then(data => {  //get data
         getDinoArray(data.Dinos) //pass array of Dino objects into the getDinoArray function (line 34)
     })
-    .catch(error => console.log(`There was a data fetch error: ${error}`));
 
 // Creating Dino Array from fetched data
 function getDinoArray(dinos) {
